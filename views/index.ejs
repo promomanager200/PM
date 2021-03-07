@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta
+      name="google-signin-client_id"
+      content="1084400380304-0kma0rntpkv4929i0r1p8o3id75kftie.apps.googleusercontent.com"
+    />
+    <link rel="stylesheet" href="/css/main.css" />
+    <title>Login : Promo Manager 💯</title>
+  </head>
+  <body>
+    <div class="main">
+      <% if (errorMessage) {%> <%= errorMessage %> <% } %>
+      <h1>Hi! <span class="wave">👋</span></h1>
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    </div>
+    <script>
+      function onSignIn(googleUser) {
+        var id_token = googleUser.getAuthResponse().id_token;
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/login");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onload = function () {
+          const { status, responseText } = xhr;
+          if (status === 200 && responseText === "success") {
+            location.assign("/promo");
+            signOut();
+          }
+        };
+        xhr.send(JSON.stringify({ token: id_token }));
+      }
+
+      function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+          console.log("User signed out.");
+        });
+      }
+    </script>
+  </body>
+</html>

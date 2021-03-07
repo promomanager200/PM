@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/main.css" />
+
+    <title>
+      Promo : <%= error? "No Access ❌" : flasherror?.length>0 ? "Try Again ❌"
+      : "Apply Promo ✅" %>
+    </title>
+  </head>
+  <body>
+    <a href="/logout" class="logout">Logout</a>
+
+    <div class="main">
+      <% if (error) { %>
+      <h1><%= email %></h1>
+      <h3><%= error %></h3>
+      <span> <a href="/logout">try with a different account</a></span>
+      <% } else { %> <% if(flasherror && flasherror.length>0) { %>
+      <div class="flash" id="flash">
+        <%= flasherror %> <span onclick="closeflash()" id="flashclose">X</span>
+      </div>
+      <% } %>
+      <h1><%= email %></h1>
+      <h2><%= code %></h2>
+      <form action="/promo" method="POST">
+        <label for="promocode"
+          >enter your code <span class="point">👇</span></label
+        >
+        <input type="text" id="promocode" name="promocode" required />
+        <input type="hidden" name="email" value="<%= email %>" />
+        <input type="hidden" name="code" value="<%= code %>" />
+        <button type="submit">Submit</button>
+      </form>
+      <% } %>
+    </div>
+    <script>
+      if (document.getElementById("flash")) {
+        setTimeout(() => {
+          document.title = "Apply Promo ✅";
+        }, 5000);
+      }
+
+      function closeflash() {
+        document.getElementById("flash").remove();
+      }
+    </script>
+  </body>
+</html>

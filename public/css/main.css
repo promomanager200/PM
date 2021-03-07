@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16px;
+}
+
+.main {
+  display: flex;
+  max-width: 900px;
+  margin: 0 auto;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.main h1 {
+  padding-right: 1rem;
+}
+
+.main h2 {
+  margin-top: 0;
+}
+
+.main form {
+  display: flex;
+  flex-direction: column;
+}
+
+.main form > * {
+  margin: 6px;
+  align-self: center;
+}
+
+.main form > input {
+  width: 300px;
+  height: 30px;
+  padding: 20px;
+  font-size: 1rem;
+}
+
+.main form > button {
+  background: transparent;
+  border: 2px solid black;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.main form > button:hover {
+  background: black;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: green;
+}
+
+.logout {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+a.logout {
+  font-size: 1.2rem;
+  border: 2px solid red;
+  padding: 5px 15px;
+  border-radius: 5px;
+  color: red;
+}
+
+a.logout:hover {
+  color: white;
+  background: red;
+}
+
+.flash {
+  border: 1px solid black;
+  padding: 15px 30px;
+  border-radius: 10px;
+}
+
+.wave {
+  animation-name: wave-animation;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+  transform-origin: 70% 70%;
+  display: inline-block;
+}
+
+.point {
+  animation-name: point-animation;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+  display: inline-block;
+}
+
+#flashclose {
+  margin-left: 10px;
+  cursor: pointer;
+  color: crimson;
+}
+
+@keyframes wave-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes point-animation {
+  0% {
+    transform: translateY(3px);
+  }
+  20% {
+    transform: translateY(-3px);
+  }
+
+  40% {
+    transform: translateY(2px);
+  }
+  60% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 12px;
+  }
+}
